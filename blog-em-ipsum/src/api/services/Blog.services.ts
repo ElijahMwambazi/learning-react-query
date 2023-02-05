@@ -1,9 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+type ValueOf<T> = T[keyof T];
+
 export type Post = {
   id: number;
   title: string;
+  email: string;
+  body: string;
+};
+
+export type Comment = {
+  id: number;
+  name: string;
   email: string;
   body: string;
 };
@@ -12,7 +21,11 @@ export type PostsQueryData = {
   data: Post[];
 };
 
-export type PostId = Pick<Post, "id">;
+export type CommentQueryData = {
+  data: Comment[];
+};
+
+export type PostId = ValueOf<Pick<Post, "id">>;
 
 export const useFetchPosts = () => {
   return useQuery<PostsQueryData>(
@@ -27,11 +40,13 @@ export const useFetchPosts = () => {
 export const useFetchComments = (
   postId: PostId
 ) => {
-  return useQuery(["comments"], async () => {
-    await axios.get(
-      `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
-    );
-  });
+  return useQuery<CommentQueryData>(
+    ["comments", postId],
+    async () =>
+      await axios.get<CommentQueryData, any>(
+        `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
+      )
+  );
 };
 
 export const deletePost = async (
