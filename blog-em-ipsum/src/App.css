@@ -1,5 +1,12 @@
+.App {
+  font-size: 1.6rem;
+  max-width: 105rem;
+  margin: 5rem auto;
+}
+
 li {
-  margin-top: 8px;
+  margin-top: 0.8rem;
+  margin-left: 2rem;
 }
 
 li.post-title {
@@ -14,4 +21,43 @@ div.pages {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding: 2rem 0rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+}
+
+.post-details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.post-detail-title {
+  font-size: 1.9rem;
+  color: blue;
+}
+
+.post-detail-buttons {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.post-detail-text {
+  margin-bottom: 1.8rem;
+}
+
+button:hover {
+  background: black;
+  color: white;
+  overflow: hidden;
+}
+
+.post-detail-comments-header {
+  margin-bottom: 1.2rem;
+}
+
+.comments span {
+  font-weight: bold;
 }
