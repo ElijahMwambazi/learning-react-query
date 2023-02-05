@@ -11,18 +11,15 @@ const Posts = () => {
   const [selectedPost, setSelectedPost] =
     useState<Post | null>(null);
 
-  const { data, status } = useFetchPosts();
+  const { data, isLoading, isError } =
+    useFetchPosts();
 
   return (
     <>
       <ul>
-        {status === "loading" && (
-          <h2>...Loading</h2>
-        )}
-        {status == "error" && (
-          <h2>Error fetching data</h2>
-        )}
-        {status === "success" &&
+        {isLoading && <h3>...Loading</h3>}
+        {isError && <h3>Error fetching data</h3>}
+        {data &&
           data!.data.map((post: Post) => (
             <li
               key={post!.id}
@@ -44,7 +41,6 @@ const Posts = () => {
           Next page
         </button>
       </div>
-      <hr />
       {selectedPost && (
         <PostDetail post={selectedPost} />
       )}
