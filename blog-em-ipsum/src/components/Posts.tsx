@@ -7,12 +7,12 @@ const maxPostPage = 10;
 
 const Posts = () => {
   const [currentPage, setCurrentPage] =
-    useState(0);
+    useState(1);
   const [selectedPost, setSelectedPost] =
     useState<Post | null>(null);
 
   const { data, isLoading, isError } =
-    useFetchPosts();
+    useFetchPosts(currentPage);
 
   return (
     <>
@@ -33,11 +33,25 @@ const Posts = () => {
           ))}
       </ul>
       <div className="pages">
-        <button onClick={() => {}}>
+        <button
+          disabled={currentPage <= 1}
+          onClick={() => {
+            setCurrentPage(
+              (previousValue) => previousValue - 1
+            );
+          }}
+        >
           Previous page
         </button>
-        <span>Page {currentPage + 1}</span>
-        <button onClick={() => {}}>
+        <span>Page {currentPage}</span>
+        <button
+          disabled={currentPage >= maxPostPage}
+          onClick={() => {
+            setCurrentPage(
+              (previousValue) => previousValue + 1
+            );
+          }}
+        >
           Next page
         </button>
       </div>

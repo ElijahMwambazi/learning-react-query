@@ -27,12 +27,14 @@ export type CommentQueryData = {
 
 export type PostId = ValueOf<Pick<Post, "id">>;
 
-export const useFetchPosts = () => {
+export const useFetchPosts = (
+  pageNumber: number
+) => {
   return useQuery<PostsQueryData>(
-    ["posts"],
+    ["posts", pageNumber],
     async () =>
       await axios.get<PostsQueryData, any>(
-        "https://jsonplaceholder.typicode.com/posts?_limit=10&_page=0"
+        `https://jsonplaceholder.typicode.com/posts?_limit=10&_page=${pageNumber}`
       )
   );
 };
