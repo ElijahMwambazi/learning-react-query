@@ -1,16 +1,16 @@
 import {
+  Suspense,
+  lazy,
+  useEffect,
+  useState,
+} from "react";
+import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Posts from "./components/Posts";
 import "./App.css";
-import {
-  Suspense,
-  lazy,
-  useEffect,
-  useState,
-} from "react";
 
 declare global {
   interface Window {
