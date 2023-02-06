@@ -101,21 +101,18 @@ export const useDeletePost = (postId: PostId) => {
   );
 };
 
-// export const updatePost = async (
-//   postId: PostId
-// ) => {
-//   const response = await fetch(
-//     `https://jsonplaceholder.typicode.com/postId/${postId}`,
-//     {
-//       method: "PATCH",
-//       headers: {
-//         "Content-type":
-//           "application/json; charset=UTF-8",
-//       },
-//       body: JSON.stringify({
-//         title: "REACT QUERY FOREVER!!!!",
-//       }),
-//     }
-//   );
-//   return response.json();
-// };
+const updatePost = async (postId: PostId) =>
+  await axios.put<PostQueryData, any>(
+    `https://jsonplaceholder.typicode.com/postId/${postId}`,
+    {
+      title: "New Title",
+      email: "newemail@gmail.com",
+      body: "New body...",
+    }
+  );
+
+export const useUpdatePost = (postId: PostId) => {
+  return useMutation<PostQueryData>(() =>
+    updatePost(postId)
+  );
+};
