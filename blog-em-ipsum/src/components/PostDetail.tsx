@@ -1,5 +1,6 @@
 import {
   Post,
+  useDeletePost,
   useFetchComments,
 } from "../api/services/Blog.services";
 
@@ -12,6 +13,11 @@ const PostDetail = ({
 }: PostDetailProps) => {
   const { data, isLoading, isError } =
     useFetchComments(post.id);
+  const deletePost = useDeletePost(post.id);
+
+  const handleDeletePost = () => {
+    deletePost.mutate();
+  };
 
   return (
     <>
@@ -21,7 +27,9 @@ const PostDetail = ({
         </h3>
         <div className="post-detail-buttons">
           <button>Update title</button>
-          <button>Delete</button>{" "}
+          <button onClick={handleDeletePost}>
+            Delete
+          </button>{" "}
         </div>
       </div>
       <p className="post-detail-text">
