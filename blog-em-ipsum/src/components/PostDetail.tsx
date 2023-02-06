@@ -2,6 +2,7 @@ import {
   Post,
   useDeletePost,
   useFetchComments,
+  useUpdatePost,
 } from "../api/services/Blog.services";
 
 export type PostDetailProps = {
@@ -14,6 +15,11 @@ const PostDetail = ({
   const { data, isLoading, isError } =
     useFetchComments(post.id);
   const deletePost = useDeletePost(post.id);
+  const updatePost = useUpdatePost(post.id);
+
+  const handleUpdatePost = () => {
+    updatePost.mutate();
+  };
 
   const handleDeletePost = () => {
     deletePost.mutate();
@@ -26,7 +32,9 @@ const PostDetail = ({
           {post!.title}
         </h3>
         <div className="post-detail-buttons">
-          <button>Update title</button>
+          <button onClick={handleUpdatePost}>
+            Update title
+          </button>
           <button onClick={handleDeletePost}>
             Delete
           </button>{" "}
