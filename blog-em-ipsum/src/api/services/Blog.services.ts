@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import {
+  useMutation,
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
@@ -26,6 +27,10 @@ export type Comment = {
 
 export type PostsQueryData = {
   data: Post[];
+};
+
+export type PostQueryData = {
+  data: Post;
 };
 
 export type CommentQueryData = {
@@ -85,15 +90,16 @@ export const useFetchComments = (
   );
 };
 
-// export const deletePost = async (
-//   postId: PostId
-// ) => {
-//   const response = await fetch(
-//     `https://jsonplaceholder.typicode.com/postId/${postId}`,
-//     { method: "DELETE" }
-//   );
-//   return response.json();
-// };
+const deletePost = async (postId: PostId) =>
+  await axios.delete<PostQueryData, any>(
+    `https://jsonplaceholder.typicode.com/postId/${postId}`
+  );
+
+export const useDeletePost = (postId: PostId) => {
+  return useMutation<PostQueryData>(() =>
+    deletePost(postId)
+  );
+};
 
 // export const updatePost = async (
 //   postId: PostId
