@@ -1,18 +1,25 @@
 import { useState } from "react";
 import PostDetail from "./PostDetail";
-import { useFetchPosts } from "../api/services/Blog.services";
+import {
+  useFetchPosts,
+  usePrefetchPosts,
+} from "../api/services/Blog.services";
 import { Post } from "../api/services/Blog.services";
 
-const maxPostPage = 10;
+export type CurrentPage = number;
+
+export const maxPostPage = 10;
 
 const Posts = () => {
   const [currentPage, setCurrentPage] =
-    useState(1);
+    useState<CurrentPage>(1);
   const [selectedPost, setSelectedPost] =
     useState<Post | null>(null);
 
   const { data, isLoading, isError } =
     useFetchPosts(currentPage);
+
+  usePrefetchPosts(currentPage, maxPostPage);
 
   return (
     <>
