@@ -10,6 +10,7 @@ import {
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./App.css";
+import InfinitePeople from "./componets/infinite-people/infinite-people.components";
 
 declare global {
   interface Window {
@@ -40,7 +41,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <div className="App">
         <h1>Infinite SWAPI</h1>
-        {/* <InfinitePeople /> */}
+        <InfinitePeople />
         {/* <InfiniteSpecies /> */}
       </div>
       <ReactQueryDevtools initialIsOpen={false} />
