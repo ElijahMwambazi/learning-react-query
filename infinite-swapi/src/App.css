@@ -1,10 +1,20 @@
 .App {
   font-size: 1.6rem;
+  text-align: center;
   max-width: 105rem;
+  height: 100vh;
   padding-bottom: 5rem;
   margin: 0rem auto;
   background-color: #698269;
-  text-align: center;
+  overflow-y: scroll;
+  perspective-origin: -500%;
+}
+
+.App::-webkit-scrollbar {
+  display: none;
+}
+
+.people {
 }
 
 .person {
@@ -28,8 +38,35 @@ li span {
   font-weight: bold;
 }
 
-.loading {
-  position: fixed;
-  top: 5px;
-  right: 5px;
+.status {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes appearDisappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.dot {
+  opacity: 0;
+  animation: appearDisappear 1.5s infinite;
+}
+
+.dot-1 {
+  animation-delay: 0.5s;
+}
+
+.dot-2 {
+  animation-delay: 1s;
+}
+
+.dot-3 {
+  animation-delay: 1.5s;
 }

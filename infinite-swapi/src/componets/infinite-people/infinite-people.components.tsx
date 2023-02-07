@@ -3,14 +3,33 @@ import { useInfiniteFetchPeople } from "../../api/services/star-wars.api";
 import Person from "../person/person.components";
 
 const InfinitePeople = () => {
-  const { data, fetchNextPage, hasNextPage } =
-    useInfiniteFetchPeople();
+  const {
+    data,
+    isLoading,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteFetchPeople();
 
   return (
     <InfiniteScroll
+      className="People"
       loadMore={() => fetchNextPage}
       hasMore={hasNextPage}
     >
+      {isLoading && (
+        <h4 className="status">
+          Loading
+          <span className="dot dot-1">.</span>
+          <span className="dot dot-2">.</span>
+          <span className="dot dot-3">.</span>
+        </h4>
+      )}
+      {isError && (
+        <h4 className="status">
+          Error fetching data
+        </h4>
+      )}
       {data &&
         data.pages.map((pageData) =>
           pageData.data.results.map(
