@@ -1,20 +1,17 @@
 .App {
   font-size: 1.6rem;
+  color: yellowgreen;
   text-align: center;
   max-width: 105rem;
   height: 100vh;
-  padding-bottom: 5rem;
+  padding-bottom: 4rem;
   margin: 0rem auto;
   background-color: #698269;
-  overflow-y: scroll;
-  perspective-origin: -500%;
+  overflow-y: auto;
 }
 
 .App::-webkit-scrollbar {
   display: none;
-}
-
-.people {
 }
 
 .person {
@@ -40,9 +37,8 @@ li span {
 
 .status {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 5%;
+  right: 20%;
 }
 
 @keyframes appearDisappear {
