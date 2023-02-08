@@ -10,6 +10,7 @@ export type Person = {
   skin_color: string;
   created: string;
 };
+
 export type Species = {
   name: string;
   language: string;
@@ -21,6 +22,7 @@ export type PeoplePage = {
   next: string | null;
   results: Person[];
 };
+
 export type SpeciesPage = {
   count: number;
   next: string | null;
@@ -30,6 +32,7 @@ export type SpeciesPage = {
 export type PeopleQueryData = {
   data: PeoplePage;
 };
+
 export type SpeciesQueryData = {
   data: SpeciesPage;
 };
@@ -44,12 +47,12 @@ const fetchPages = async (url: string) =>
 
 export const useInfiniteFetchPeople = () => {
   return useInfiniteQuery<PeopleQueryData>(
-    ["star-war-people"],
+    ["star-wars-people"],
     ({ pageParam = APIUrl.INITIAL_PEOPLE_URL }) =>
       fetchPages(pageParam),
     {
       getNextPageParam: (lastPage) =>
-        lastPage.data.next || null,
+        lastPage.data.next || undefined,
     }
   );
 };
