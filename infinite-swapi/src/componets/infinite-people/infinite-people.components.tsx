@@ -6,16 +6,24 @@ const InfinitePeople = () => {
   const {
     data,
     isLoading,
-    isError,
+    // isError,
     fetchNextPage,
     hasNextPage,
   } = useInfiniteFetchPeople();
 
   return (
     <InfiniteScroll
-      className="People"
-      loadMore={() => fetchNextPage}
+      loadMore={() => fetchNextPage()}
       hasMore={hasNextPage}
+      useWindow={false}
+      loader={
+        <h4 className="status">
+          Loading
+          <span className="dot dot-1">.</span>
+          <span className="dot dot-2">.</span>
+          <span className="dot dot-3">.</span>
+        </h4>
+      }
     >
       {isLoading && (
         <h4 className="status">
@@ -25,11 +33,11 @@ const InfinitePeople = () => {
           <span className="dot dot-3">.</span>
         </h4>
       )}
-      {isError && (
+      {/* {isError && (
         <h4 className="status">
           Error fetching data
         </h4>
-      )}
+      )} */}
       {data &&
         data.pages.map((pageData) =>
           pageData.data.results.map(
