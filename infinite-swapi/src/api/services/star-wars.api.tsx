@@ -56,3 +56,16 @@ export const useInfiniteFetchPeople = () => {
     }
   );
 };
+
+export const useInfiniteFetchSpecies = () => {
+  return useInfiniteQuery<SpeciesQueryData>(
+    ["star-wars-species"],
+    ({
+      pageParam = APIUrl.INITIAL_SPECIES_URL,
+    }) => fetchPages(pageParam),
+    {
+      getNextPageParam: (lastPage) =>
+        lastPage.data.next || undefined,
+    }
+  );
+};
