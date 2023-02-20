@@ -43,13 +43,13 @@ export function Card({
             src={`${baseImageUrl}/${image.fileName}`}
             alt={itemName}
           />
-          <Text fontSize="xs" textAlign="center">
+          <Text fontSize="xs" align="center">
             Photo by <Link href={image.authorLink}>{image.authorName}</Link>{' '}
             from <Link href={image.platformLink}>{image.platformName}</Link>
           </Text>
         </Box>
         <Stack pt={10}>
-          <Heading textAlign="center" fontSize="2xl">
+          <Heading align="center" fontSize="2xl">
             {itemName}
           </Heading>
           {cardContents}

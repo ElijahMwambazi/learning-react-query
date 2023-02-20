@@ -1,5 +1,5 @@
 import { Box, Heading, HStack, Radio, RadioGroup } from '@chakra-ui/react';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 
 import { useTreatments } from '../treatments/hooks/useTreatments';
 import { useStaff } from './hooks/useStaff';
@@ -12,7 +12,7 @@ export function AllStaff(): ReactElement {
 
   return (
     <Box>
-      <Heading mt={10} textAlign="center">
+      <Heading mt={10} align="center">
         Our Staff
       </Heading>
       <HStack m={10} spacing={8} justify="center">

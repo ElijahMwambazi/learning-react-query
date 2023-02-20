@@ -33,10 +33,10 @@ export function UserProfile(): ReactElement {
   }
 
   return (
-    <Flex minH="84vh" textAlign="center" justify="center">
+    <Flex minH="84vh" align="center" justify="center">
       <Stack spacing={8} mx="auto" w="xl" py={12} px={6}>
         <UserAppointments />
-        <Stack textAlign="center">
+        <Stack align="center">
           <Heading>Your information</Heading>
         </Stack>
         <Box rounded="lg" bg="white" boxShadow="lg" p={8}>
